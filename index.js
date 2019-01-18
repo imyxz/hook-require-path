@@ -2,19 +2,19 @@
 const Module = require('module')
 const path = require('path')
 const originResolveFilename = Module._resolveFilename
-function getPathMatchRule (_path, rules) {
-  for (let { prefix, dir } of rules) {
-    if (_path.substr(0, prefix.length) === prefix) {
-      return {
-        prefix, dir
-      }
-    }
-  }
-  return null
-}
 module.exports = class HookRequirePath {
   constructor () {
     this.rules = []
+  }
+  getPathMatchRule (_path) {
+    for (let { prefix, dir } of this.rules) {
+      if (_path.substr(0, prefix.length) === prefix) {
+        return {
+          prefix, dir
+        }
+      }
+    }
+    return null
   }
   addRule (prefix, dir) {
     if (!path.isAbsolute(dir)) {
@@ -27,9 +27,9 @@ module.exports = class HookRequirePath {
     })
   }
   install () {
-    const rules = this.rules
+    const that = this
     Module._resolveFilename = function (request, parent) {
-      const matchedRule = getPathMatchRule(request, rules)
+      const matchedRule = that.getPathMatchRule(request)
       if (matchedRule !== null) {
         const pathWithoutPrefix = request.substr(matchedRule.prefix.length)
         const targetPath = path.resolve(matchedRule.dir, pathWithoutPrefix)
