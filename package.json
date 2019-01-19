@@ -1,6 +1,6 @@
 {
   "name": "hook-require-path",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "repository": "https://github.com/imyxz/hook-require-path",
   "author": "yxz <i@yxz.me>",
