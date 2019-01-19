@@ -80,3 +80,9 @@ install the hook.
 
 uninstall the hook.
 
+# test
+
+```bash
+npm run test
+node test/install.manual-test.js
+```
