@@ -10,5 +10,11 @@
   },
   "scripts": {
     "test": "jest ./test"
-  }
+  },
+  "keywords": [
+    "node",
+    "require alias",
+    "require",
+    "alias"
+  ]
 }

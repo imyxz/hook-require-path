@@ -2,6 +2,8 @@
 
 Module path prefix alias for node.
 
+![](https://img.shields.io/npm/v/hook-require-path.svg) 
+
 # Quick example
 
 ```javascript
